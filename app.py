@@ -1715,9 +1715,27 @@ def app():
         target_strategy = "OVER 2.5" if strategy_view == "Solo OVER 2.5" else "MULTIGOL 2-5"
         filtered_rows = [r for r in get_grouped_filtered_matches(matches) if r["strategy"] == target_strategy]
 
-        with st.expander("⚽ Mostra statistiche squadre"):
+     with st.expander("⚽ Mostra statistiche squadre"):
+
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">⚽ Statistiche squadre</div>', unsafe_allow_html=True)
+
+    xg_home = safe_float(selected.get('team_a_xg_prematch'), 0.0)
+    xg_away = safe_float(selected.get('team_b_xg_prematch'), 0.0)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown(f"**{selected.get('home_name', 'Casa')}**")
+        st.write(f"Gol fatti in casa: {fmt_stat(home_stats.get('scored_home'))}")
+        st.write(f"xG Casa: {fmt_stat(xg_home)}")
+
+    with col2:
+        st.markdown(f"**{selected.get('away_name', 'Ospite')}**")
+        st.write(f"Gol fatti in trasferta: {fmt_stat(away_stats.get('scored_away'))}")
+        st.write(f"xG Trasferta: {fmt_stat(xg_away)}")
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
     xg_home = safe_float(selected.get('team_a_xg_prematch'), 0.0)
     xg_away = safe_float(selected.get('team_b_xg_prematch'), 0.0)
