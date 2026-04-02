@@ -16,11 +16,12 @@ APP_TIMEZONE = "Europe/Rome"
 
 
 def load_api_key():
-    key = os.getenv("FOOTYSTATS_API_KEY")
-    if not key:
-        st.error("API key non trovata. Crea un file .env con FOOTYSTATS_API_KEY=LA_TUA_CHIAVE")
-        st.stop()
-    return key.strip()
+    import streamlit as st
+    try:
+        return st.secrets["FOOTYSTATS_API_KEY"]
+    except:
+        import os
+        return os.getenv("FOOTYSTATS_API_KEY")
 
 
 def safe_float(value, default=0.0):
