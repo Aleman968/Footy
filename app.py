@@ -1715,7 +1715,7 @@ def app():
         target_strategy = "OVER 2.5" if strategy_view == "Solo OVER 2.5" else "MULTIGOL 2-5"
         filtered_rows = [r for r in get_grouped_filtered_matches(matches) if r["strategy"] == target_strategy]
 
-     with st.expander("⚽ Mostra statistiche squadre"):
+    with st.expander("⚽ Mostra statistiche squadre"):
 
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">⚽ Statistiche squadre</div>', unsafe_allow_html=True)
